@@ -8,6 +8,6 @@ You will need [gforth](https://www.gnu.org/software/gforth/) installed.
 
 ## Usage
 
-Start forth by typeing `gforth`, then include `forth tac toe` by typing `include ticTacForth.f`. Start a game of `tic forth tac` with the word `int`. Make your play by putting the row number (zero indexed) on the stack followed by the column number (zero indexed) and then the word `go`. The dice is cast. Only the strong survive.
+Start forth by typeing `gforth`, then include `forth tac toe` by typing `include ticTacForth.f`. Start a game of `tic forth tac` with the word `init`. Make your play by putting the row number (zero indexed) on the stack followed by the column number (zero indexed) and then the word `go`. The dice is cast. Only the strong survive.
 
 A game always starts with player **O**.
