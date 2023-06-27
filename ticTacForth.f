@@ -1,3 +1,5 @@
+include random.fs
+
 variable board
 9 cells allot
 variable currentPlayer
@@ -83,7 +85,7 @@ variable currentPlayer
 ;
 
 : isValidMove? ( row col -- is-valid? )
-  2dup
+  2dup ( row col row col )
   inBounds? ( row col inBounds? )
   -rot ( inBounds? row col )
   isEmpty?
@@ -165,7 +167,14 @@ variable currentPlayer
     anyoneHasWon?
     printBoard
     if
-      ." You won!"
+      currentPlayer @
+      circle =
+      if
+        ." Circle "
+      else
+        ." Cross "
+      then
+      ." won!"
     else
       switchCurrentPlayer
     then
@@ -180,4 +189,22 @@ variable currentPlayer
     emit
     ." ) is not a valid move. Try again!"
   then
+;
+
+: get-empty-cell ( -- row col)
+  3 random 3 random ( rand-row rand-col )
+  2dup ( rand-row rand-col rand-row rand-col )
+  isEmpty? ( rand-row rand-col isEmpty?)
+  if
+    ( done: leave them on the stack )
+  else
+    ( rand-row rand-col )
+    2drop
+    recurse
+  then
+;
+
+: random-move ( )
+  get-empty-cell
+  go
 ;
